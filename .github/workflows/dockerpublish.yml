@@ -6,6 +6,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
+        ssh-key: ${{ secret.GIT_SSH_KEY }} 
         submodules: true 
     - name: "Publication sur Docker Hub"
       uses: elgohr/Publish-Docker-Github-Action@2.14
