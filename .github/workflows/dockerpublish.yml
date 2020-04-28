@@ -1,5 +1,5 @@
-name: "Compile et publie sur Docker Hub"
-on: [push]
+name: "Compilation et publication sur Docker Hub"
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
