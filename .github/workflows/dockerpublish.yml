@@ -5,8 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: true 
     - name: "Publication sur Docker Hub"
-      uses: elgohr/Publish-Docker-Github-Action@2.14
+    - uses: elgohr/Publish-Docker-Github-Action@2.14
       with:
         name: lernpfr/lern
         username: ${{ secrets.DOCKER_USERNAME }}
