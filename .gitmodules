@@ -1,0 +1,6 @@
+[submodule "lern-api"]
+	path = lern-api
+	url = https://github.com/lern-pfr/lern-api
+[submodule "lern-web"]
+	path = lern-web
+	url = https://github.com/lern-pfr/lern-web
