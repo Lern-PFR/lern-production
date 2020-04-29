@@ -29,3 +29,6 @@ docker build . -t lernpfr/lern-custom
 docker run -p 80:80 -p 443:443 lernpfr/lern-custom
 ```
 
+## Structure du projet
+
+Des informations complémentaires sur la structure du projet sont disponibles dans le fichier [ABOUT.md](ABOUT.md).
