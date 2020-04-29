@@ -1,10 +1,10 @@
 # Lern.
 
-[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/repository/docker/lernpfr/lern)
+[![Docker Hub](https://img.shields.io/badge/docker-ready-blue.svg)](https://hub.docker.com/r/lernpfr/lern)
 
 Lern. est une plateforme communautaire de cours en ligne.
 
-Ce dépôt représente la dernière version stable du projet, ainsi que la dernière version disponible sur [Docker Hub](https://hub.docker.com/repository/docker/lernpfr/lern).
+Ce dépôt représente la dernière version stable du projet, ainsi que la dernière version disponible sur [Docker Hub](https://hub.docker.com/r/lernpfr/lern).
 
 ## Installation
 
