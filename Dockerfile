@@ -6,10 +6,19 @@ COPY ["lern-api/Lern-API/Lern-API.csproj", "Lern-API/"]
 RUN dotnet restore "Lern-API/Lern-API.csproj"
 COPY ["lern-api/Lern-API/", "Lern-API/"]
 WORKDIR "/src/Lern-API"
-RUN dotnet build "Lern-API.csproj" -c Release -o /app/build
+RUN dotnet build "Lern-API.csproj" -c Release -o /app/build --no-restore
+
+FROM api-build AS api-tests
+WORKDIR /src
+COPY ["lern-api/Lern-API.Tests/Lern-API.Tests.csproj", "Lern-API.Tests/"]
+COPY ["lern-api/Lern-API.Tests/", "Lern-API.Tests/"]
+WORKDIR "/src"
+COPY ["lern-api/Lern-API.sln", "./"]
+RUN dotnet restore "Lern-API.sln"
+RUN dotnet test --no-restore -v n
 
 FROM api-build AS api-publish
-RUN dotnet publish "Lern-API.csproj" -c Release -o /app/publish
+RUN dotnet publish "Lern-API.csproj" -c Release -o /app/publish --no-restore
 
 FROM node:lts-alpine AS web-build
 WORKDIR /usr/src/app
