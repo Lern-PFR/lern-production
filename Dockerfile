@@ -11,11 +11,11 @@ RUN dotnet build "Lern-API.csproj" -c Release -o /app/build --no-restore
 FROM api-build AS api-tests
 WORKDIR /src
 COPY ["lern-api/Lern-API.Tests/Lern-API.Tests.csproj", "Lern-API.Tests/"]
-COPY ["lern-api/Lern-API.Tests/", "Lern-API.Tests/"]
+COPY ["lern-api/", "./"]
 WORKDIR "/src"
 COPY ["lern-api/Lern-API.sln", "./"]
 RUN dotnet restore "Lern-API.sln"
-RUN dotnet test --no-restore -v n
+RUN dotnet test --no-restore -v n "Lern-API.sln"
 
 FROM api-build AS api-publish
 RUN dotnet publish "Lern-API.csproj" -c Release -o /app/publish --no-restore
