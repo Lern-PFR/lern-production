@@ -6,3 +6,31 @@ services:
     ports:
       - 80:80
       - 443:443
+    environment: 
+      - DB_HOST=database
+      - DB_PORT=5432
+      - DB_USERNAME=lern-dev-user
+      - DB_PASSWORD=lern-dev-password
+      - DB_DATABASE=lern-dev-db
+      - SECRET_KEY=7Cyj9sJ9X8vKJwG2k23ix3UE6XRPF2JDuglBxHyWz88Wi36f5ykJdgadDXT8yY2DMikwR6TG3nx5vKI2q8VDjWOZkMRFTEc64X0Qavg62WZWwm1gqC2s8A7MwygQft
+    depends_on:
+      - database
+  database:
+    image: postgres:12-alpine
+    environment:
+      POSTGRES_USER: lern-dev-user
+      POSTGRES_PASSWORD: lern-dev-password
+      POSTGRES_DB: lern-dev-db
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - postgres
+    restart: unless-stopped
+
+networks:
+  postgres:
+
+volumes:
+  postgres:
+    
