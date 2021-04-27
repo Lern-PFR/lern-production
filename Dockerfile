@@ -1,6 +1,6 @@
 # Basé sur le Dockerfile généré par Visual Studio
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS api-build
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS api-build
 WORKDIR /src
 COPY ["lern-api/Lern-API/Lern-API.csproj", "Lern-API/"]
 RUN dotnet restore "Lern-API/Lern-API.csproj"
@@ -22,12 +22,12 @@ RUN dotnet publish "Lern-API.csproj" -c Release -o /app/publish --no-restore
 
 FROM node:lts-alpine AS web-build
 WORKDIR /usr/src/app
-COPY ["lern-web/package.json", "lern-web/package-lock.json", "./"]
-RUN npm install
+COPY ["lern-web/package.json", "lern-web/yarn.lock", "./"]
+RUN yarn install
 COPY ["lern-web/", "./"]
-RUN PUBLIC_URL="/Content" npm run build
+RUN REACT_APP_API_URL="" PUBLIC_URL="/" yarn build
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS final
+FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS final
 WORKDIR /app
 COPY --from=api-publish /app/publish .
 COPY --from=web-build /usr/src/app/build ./Content

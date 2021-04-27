@@ -1,5 +1,7 @@
 name: "Compilation et publication sur Docker Hub"
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -15,6 +15,9 @@ services:
       - SECRET_KEY=7Cyj9sJ9X8vKJwG2k23ix3UE6XRPF2JDuglBxHyWz88Wi36f5ykJdgadDXT8yY2DMikwR6TG3nx5vKI2q8VDjWOZkMRFTEc64X0Qavg62WZWwm1gqC2s8A7MwygQft
     depends_on:
       - database
+    networks:
+      - postgres
+
   database:
     image: postgres:12-alpine
     environment:
